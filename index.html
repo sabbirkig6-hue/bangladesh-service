@@ -113,30 +113,3 @@ $("nav-register").addEventListener("click",()=>goPage("register"));
 $("nav-account").addEventListener("click",()=>goPage("account"));
 $("topLoginBtn").addEventListener("click",()=>goPage("login"));
 $("btnGoogle").addEventListener("click",()=>{ let p=new firebase.auth.GoogleAuthProvider(); auth.signInWithPopup(p); });
-$("btnLogout").addEventListener("click",()=>{auth.signOut(); location.reload();});
-auth.onAuthStateChanged(u=>{
-  if(u){
-    $("topLoginBtn").style.display="none";
-    let hp=$("headerProfilePic"); hp.style.display="grid"; hp.textContent=(u.displayName||"P").charAt(0).toUpperCase();
-    $("profilePic").src=u.photoURL||"https://i.pravatar.cc/200?u="+u.uid;
-    $("profileNameText").textContent=u.displayName||"User";
-    $("pName").value=u.displayName||""; $("pEmail").value=u.email||"";
-  }
-});
-$("btnSubmit").addEventListener("click", async ()=>{
-  const data={ type:$("fType").value, name:$("fName").value.trim(), address:$("fAddr").value.trim(), phone:$("fPhone").value.trim(), details:$("fDetails").value.trim(), ownerUid: auth.currentUser?auth.currentUser.uid:"guest_"+Date.now(), createdAt: Date.now() };
-  if(!data.name||!data.phone){ $("formMsg").textContent="নাম ও ফোন দিন"; return; }
-  $("formMsg").textContent="জমা হচ্ছে...";
-  try{
-    await db.ref("providers").push(data);
-    await sendToTelegram(data);
-    $("formMsg").textContent="জমা হয়েছে! Telegram এ গেছে";
-    $("fName").value=""; $("fPhone").value=""; $("fAddr").value=""; $("fDetails").value="";
-    setTimeout(()=>goHome(),900);
-  }catch(e){ $("formMsg").textContent=e.message; }
-});
-$("btnSaveProfile").addEventListener("click",()=>{ alert("সেভ হয়েছে: "+$("pName").value); });
-initCats();
-</script>
-</body>
-</html>
