@@ -5,27 +5,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bangladesh Service-</title>
+
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui;background:#f5f7fb;color:#111}
-.topbar{position:sticky;top:0;z-index:20;background:linear-gradient(90deg,#0a66ff,#00a8ff);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}
-.topbar b{font-size:18px;flex:1}
-.iconBtn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;border:0;color:#fff;font-weight:800}
+.topbar{position:sticky;top:0;z-index:20;background:linear-gradient(90deg,#0a66ff,#00a8ff);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.topbar b{font-size:17px;flex:1}
+.iconBtn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;border:0;color:#fff;font-weight:800;font-size:17px;cursor:pointer;overflow:hidden}
+.iconBtn img{width:100%;height:100%;object-fit:cover}
 .app-section{display:none;padding:12px 12px 90px;max-width:800px;margin:0 auto}
 .app-section.active{display:block}
 .searchWrap{background:#fff;padding:10px 14px;border-radius:16px;display:flex;gap:10px;box-shadow:0 4px 18px rgba(0,0,0,.06);margin:8px 0 14px}
 .searchWrap input{border:0;outline:none;width:100%;font-size:15px}
 .hero{background:#fff;border-radius:18px;padding:14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 18px rgba(0,0,0,.06)}
 .catGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.cat{position:relative;background:#fff;border-radius:18px;padding:16px 10px;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(10,102,255,.08);border:1px solid #eef2ff}
+.cat{position:relative;background:#fff;border-radius:18px;padding:16px 10px;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(10,102,255,.08);border:1px solid #eef2ff;cursor:pointer}
 .cat .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;margin-bottom:8px}
 .cat .name{font-weight:800;font-size:14px;text-align:center}
 .cat .count{position:absolute;top:8px;right:8px;background:#0a66ff;color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px}
 .nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e8ecf5;display:flex;justify-content:space-around;padding:8px 0;z-index:30}
-.nav button{border:0;background:0;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px;color:#6b7280}
+.nav button{border:0;background:0;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px;color:#6b7280;cursor:pointer}
 .nav button.active{color:#0a66ff;font-weight:900}
 .card{background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 4px 14px rgba(0,0,0,.05);display:flex;gap:10px;align-items:center}
 .avatar{width:48px;height:48px;border-radius:50%;background:#e6efff;display:grid;place-items:center;font-weight:900;color:#0a66ff;flex-shrink:0}
@@ -37,27 +40,34 @@ body{margin:0;font-family:system-ui;background:#f5f7fb;color:#111}
 .formCard input,.formCard select,.formCard textarea{width:100%;padding:13px 14px;border:1px solid #dbe2f5;border-radius:12px;margin-top:10px;font-size:14px;outline:none}
 .page{position:fixed;inset:0;background:#f5f7fb;z-index:60;display:none;flex-direction:column;overflow:auto}
 .profileHeader{background:linear-gradient(180deg,#0a66ff 60%,#f5f7fb 60%);padding:18px;text-align:center}
-.profilePic{width:96px;height:96px;border-radius:50%;border:4px solid #fff;object-fit:cover;background:#fff}
+.profilePic{width:96px;height:96px;border-radius:50%;border:4px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.18);object-fit:cover;background:#fff}
 .loginCard{background:#fff;border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center}
 .small{font-size:12px;color:#6b7280}
 </style>
 </head>
+
 <body>
 
 <div class="topbar">
 <div class="iconBtn">B</div>
 <b id="logoHome">Bangladesh Service-</b>
-<button class="iconBtn" id="topLoginBtn">L</button>
+<button class="iconBtn" id="topLoginBtn" title="লগইন">L</button>
+<button class="iconBtn" id="headerProfilePic" title="প্রোফাইল">👤</button>
 </div>
 
 <main>
+
 <div id="page-home" class="app-section active">
 <div class="searchWrap">
 <span>🔍</span>
 <input id="searchBox" placeholder="সেবা খুঁজুন - ড্রাইভার, ডাক্তার, ইমাম...">
 </div>
+
 <div class="hero">
-<div><b>Bangladesh Service-</b><br><small>আপনার এলাকার সেবা খুঁজুন</small></div>
+<div>
+<b style="font-size:16px">Bangladesh Service-</b><br>
+<small style="color:#6b7280">আপনার এলাকার সেবা খুঁজুন</small>
+</div>
 <div style="text-align:right">
 <b id="totalCount" style="font-size:22px;color:#0a66ff">0 জন</b><br>
 <small>সক্রিয়</small>
@@ -82,16 +92,19 @@ body{margin:0;font-family:system-ui;background:#f5f7fb;color:#111}
 
 <div id="page-account" class="app-section">
 <div class="profileHeader">
-<img id="profilePic" class="profilePic" src="https://i.pravatar.cc/200">
+<img id="profilePic" class="profilePic" src="https://i.pravatar.cc/200?u=guest">
 <div id="profileNameText" style="margin-top:10px;font-weight:900;font-size:18px">অতিথি</div>
 </div>
+
 <div class="formCard" style="margin-top:12px">
 <h3>আমার প্রোফাইল</h3>
+<div id="accountLoginMsg" class="small">প্রোফাইল ব্যবহার করতে Google দিয়ে লগইন করুন।</div>
 <input id="pName" placeholder="নাম">
 <input id="pEmail" disabled placeholder="ইমেইল">
 <input id="pPhone" placeholder="ফোন">
 <input id="pAddress" placeholder="ঠিকানা">
 <button class="btn b2" id="btnSaveProfile" style="margin-top:12px">সেভ করুন</button>
+<button class="btn b1" id="accountGoogleBtn" style="width:100%;margin-top:10px">Google দিয়ে লগইন</button>
 <button class="btn b1" id="btnLogout" style="width:100%;margin-top:10px">লগআউট</button>
 </div>
 </div>
@@ -105,6 +118,7 @@ body{margin:0;font-family:system-ui;background:#f5f7fb;color:#111}
 <div id="loginMsg" style="margin-top:10px"></div>
 </div>
 </div>
+
 </main>
 
 <div id="page-service" class="page">
@@ -143,12 +157,15 @@ appId:"1:1078248903889:web:310b9ef221bccfeeaf61f0"
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const auth=firebase.auth();
 const db=firebase.database();
 
 const ADMIN_EMAIL="sabbirahmed12@gmail.com";
 
-function $(id){return document.getElementById(id);}
+function $(id){
+return document.getElementById(id);
+}
 
 const SERVICES=[
 ["driver","ড্রাইভার","🚗","#e7f0ff"],
@@ -208,14 +225,22 @@ let currentServiceType="";
 let currentUser=null;
 
 function isAdmin(){
-return !!(auth.currentUser &&
+return !!(
+auth.currentUser &&
 auth.currentUser.email &&
-auth.currentUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase());
+auth.currentUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase()
+);
 }
 
 function escapeHTML(value){
 return String(value??"").replace(/[&<>"']/g,function(c){
-return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+return {
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[c];
 });
 }
 
@@ -246,12 +271,14 @@ return providers.filter(p=>p.type===t).length;
 
 function initCats(){
 let h="";
+
 for(let s of SERVICES){
 h+='<div class="cat" data-type="'+s[0]+'">'+
 '<span class="count">'+getCount(s[0])+'</span>'+
 '<div class="ico" style="background:'+s[3]+'">'+s[2]+'</div>'+
 '<div class="name">'+s[1]+'</div></div>';
 }
+
 $("catBox").innerHTML=h;
 
 document.querySelectorAll(".cat").forEach(el=>{
@@ -270,10 +297,11 @@ $("totalCount").textContent=providers.length+" জন";
 function openServicePage(t){
 let svc=SERVICES.find(x=>x[0]===t);
 if(!svc)return;
+
 currentServiceType=t;
 $("serviceTitle").textContent=svc[1];
-$("page-service").style.display="flex";
 $("serviceSearchBox").value="";
+$("page-service").style.display="flex";
 renderServicePage();
 }
 
@@ -287,7 +315,13 @@ let q=($("serviceSearchBox").value||"").toLowerCase();
 let list=providers.filter(p=>{
 if(p.type!==currentServiceType)return false;
 if(!q)return true;
-return ((p.name||"")+" "+(p.address||"")+" "+(p.phone||"")+" "+(p.details||"")).toLowerCase().includes(q);
+
+return (
+(p.name||"")+" "+
+(p.address||"")+" "+
+(p.phone||"")+" "+
+(p.details||"")
+).toLowerCase().includes(q);
 });
 
 $("serviceCount").textContent=list.length+" জন";
@@ -297,8 +331,8 @@ let html="";
 for(let p of list){
 let ini=escapeHTML((p.name||"B").trim().charAt(0).toUpperCase());
 let phone=String(p.phone||"").replace(/[^0-9]/g,"");
-let callLink="tel:"+phone;
 let waNumber=phone.startsWith("0")?"88"+phone:phone;
+let callLink="tel:"+phone;
 let waLink="https://wa.me/"+waNumber;
 
 html+='<div class="card" style="flex-direction:column;align-items:stretch">'+
@@ -351,65 +385,100 @@ providers.push({...val[k],fbId:k});
 }
 
 initCats();
+
 if(currentServiceType)renderServicePage();
+
 },error=>{
 console.error(error);
 });
 
 $("searchBox").addEventListener("input",function(){
 let q=this.value.toLowerCase();
+
 document.querySelectorAll(".cat").forEach(el=>{
 let t=el.getAttribute("data-type");
 let s=SERVICES.find(x=>x[0]===t);
 let name=s?s[1].toLowerCase():"";
+
 el.style.display=name.includes(q)||t.includes(q)?"flex":"none";
 });
 });
 
 $("serviceSearchBox").addEventListener("input",renderServicePage);
+
 $("btnBackService").addEventListener("click",closeServicePage);
 $("btnCloseService").addEventListener("click",closeServicePage);
+
 $("logoHome").addEventListener("click",goHome);
 $("nav-home").addEventListener("click",goHome);
 $("nav-register").addEventListener("click",()=>goPage("register"));
 $("nav-account").addEventListener("click",()=>goPage("account"));
+
 $("topLoginBtn").addEventListener("click",()=>goPage("login"));
 
-$("btnGoogle").addEventListener("click",async()=>{
+$("headerProfilePic").addEventListener("click",()=>{
+goPage("account");
+});
+
+async function googleLogin(){
 try{
 let provider=new firebase.auth.GoogleAuthProvider();
 await auth.signInWithPopup(provider);
 goHome();
 }catch(e){
-$("loginMsg").textContent=e.message;
+alert("লগইন সমস্যা: "+e.message);
+}
+}
+
+$("btnGoogle").addEventListener("click",googleLogin);
+$("accountGoogleBtn").addEventListener("click",googleLogin);
+
+$("btnLogout").addEventListener("click",async()=>{
+try{
+await auth.signOut();
+goHome();
+}catch(e){
+alert(e.message);
 }
 });
 
-$("btnLogout").addEventListener("click",async()=>{
-await auth.signOut();
-location.reload();
-});
-
-auth.onAuthStateChanged(u=>{
+auth.onAuthStateChanged(async u=>{
 currentUser=u;
 
 if(u){
 $("topLoginBtn").style.display="none";
+
+$("headerProfilePic").innerHTML=u.photoURL
+?'<img src="'+escapeHTML(u.photoURL)+'" alt="Profile">'
+:escapeHTML((u.displayName||"P").charAt(0).toUpperCase());
+
 $("profilePic").src=u.photoURL||"https://i.pravatar.cc/200?u="+u.uid;
 $("profileNameText").textContent=u.displayName||"ব্যবহারকারী";
-$("pName").value=u.displayName||"";
 $("pEmail").value=u.email||"";
-$("pPhone").value="";
-$("pAddress").value="";
-$("btnSaveProfile").disabled=false;
+$("accountLoginMsg").textContent="আপনি লগইন করেছেন।";
+
+try{
+const snap=await db.ref("profiles/"+u.uid).once("value");
+const p=snap.val()||{};
+
+$("pName").value=p.name||u.displayName||"";
+$("pPhone").value=p.phone||"";
+$("pAddress").value=p.address||"";
+}catch(e){
+console.log(e);
+}
+
 }else{
 $("topLoginBtn").style.display="grid";
+$("headerProfilePic").textContent="👤";
+
+$("profilePic").src="https://i.pravatar.cc/200?u=guest";
 $("profileNameText").textContent="অতিথি";
-$("pEmail").value="";
 $("pName").value="";
+$("pEmail").value="";
 $("pPhone").value="";
 $("pAddress").value="";
-$("btnSaveProfile").disabled=true;
+$("accountLoginMsg").textContent="প্রোফাইল ব্যবহার করতে Google দিয়ে লগইন করুন।";
 }
 
 if(currentServiceType)renderServicePage();
@@ -447,6 +516,7 @@ $("formMsg").textContent="আবেদন জমা হচ্ছে...";
 
 try{
 await db.ref("providers").push(data);
+
 $("formMsg").style.color="green";
 $("formMsg").textContent="আবেদন সফলভাবে জমা হয়েছে!";
 
@@ -456,6 +526,7 @@ $("fAddr").value="";
 $("fDetails").value="";
 
 setTimeout(()=>goHome(),1200);
+
 }catch(e){
 $("formMsg").style.color="red";
 $("formMsg").textContent="সমস্যা হয়েছে: "+e.message;
@@ -466,8 +537,9 @@ $("btnSubmit").disabled=false;
 
 $("btnSaveProfile").addEventListener("click",async()=>{
 const u=auth.currentUser;
+
 if(!u){
-alert("আগে লগইন করুন।");
+alert("আগে Google দিয়ে লগইন করুন।");
 return;
 }
 
@@ -480,6 +552,7 @@ address:$("pAddress").value.trim()
 
 try{
 await db.ref("profiles/"+u.uid).set(profile);
+$("profileNameText").textContent=profile.name||u.displayName||"ব্যবহারকারী";
 alert("প্রোফাইল সেভ হয়েছে।");
 }catch(e){
 alert("সেভ হয়নি: "+e.message);
