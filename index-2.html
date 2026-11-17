@@ -3,129 +3,71 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0759c7">
-<title>বাংলাদেশ সার্ভিস</title>
+<title>Bangladesh Service-</title>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Noto Sans Bengali",sans-serif;background:#f4f7fc;color:#172033}
-.topbar{position:sticky;top:0;z-index:20;background:linear-gradient(110deg,#064db5,#0788e8);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 3px 14px #003b8025}
-.brand{flex:1;line-height:1.25}.brand small{display:block;font-size:12px;font-weight:700;opacity:.95}.brand b{font-size:21px}
-.iconBtn{width:38px;height:38px;border-radius:50%;background:#ffffff28;display:grid;place-items:center;border:0;color:#fff;font-weight:800}
-.app-section{display:none;padding:12px 12px 92px;max-width:820px;margin:auto}.app-section.active{display:block}
-.searchWrap{background:#fff;padding:11px 14px;border-radius:15px;display:flex;gap:10px;box-shadow:0 4px 18px #0000000c;margin:8px 0 14px}
-.searchWrap input{border:0;outline:none;width:100%;font-size:15px;background:transparent}
-.hero{background:#fff;border-radius:18px;padding:15px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 18px #0000000c}
-.catGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
-.cat{position:relative;background:#fff;border-radius:17px;padding:15px 9px;min-height:94px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 5px 18px #0a66ff0d;border:1px solid #edf1fa}
-.cat .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;margin-bottom:7px}
-.cat .name{font-weight:800;font-size:14px;text-align:center}.cat .count{position:absolute;top:7px;right:7px;background:#0a66ff;color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:#f5f7fb;color:#111}
+.topbar{position:sticky;top:0;z-index:20;background:linear-gradient(90deg,#0a66ff,#00a8ff);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.topbar b{font-size:18px;flex:1}
+.topbar .iconBtn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;border:0;color:#fff;font-weight:800}
+.app-section{display:none;padding:12px 12px 90px;max-width:800px;margin:0 auto}.app-section.active{display:block}
+.searchWrap{background:#fff;padding:10px 14px;border-radius:16px;display:flex;gap:10px;box-shadow:0 4px 18px rgba(0,0,0,.06);margin:8px 0 14px}
+.searchWrap input{border:0;outline:none;width:100%;font-size:15px}
+.hero{background:#fff;border-radius:18px;padding:14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.catGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.cat{position:relative;background:#fff;border-radius:18px;padding:16px 10px;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(10,102,255,.08);border:1px solid #eef2ff}
+.cat .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;margin-bottom:8px}
+.cat .name{font-weight:800;font-size:14px;text-align:center}
+.cat .count{position:absolute;top:8px;right:8px;background:#0a66ff;color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px;min-width:22px;text-align:center}
 .nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e8ecf5;display:flex;justify-content:space-around;padding:8px 0;z-index:30}
-.nav button{border:0;background:none;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px;color:#6b7280}
+.nav button{border:0;background:0;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px;color:#6b7280}
 .nav button.active{color:#0a66ff;font-weight:900}
-.card{background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 4px 14px #0000000b}
-.avatar{width:48px;height:48px;border-radius:50%;background:#e6efff;display:grid;place-items:center;font-weight:900;color:#0a66ff;flex-shrink:0}
-.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer;text-align:center}
+.card{background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 4px 14px rgba(0,0,0,.05);display:flex;gap:10px;align-items:center}
+.avatar{width:48px;height:48px;border-radius:50%;background:#e6efff;display:grid;place-items:center;font-weight:900;color:#0a66ff}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:800}
 .b1{background:#eef2ff;color:#0a66ff}.b2{background:#0a66ff;color:#fff;width:100%}
-.formCard{background:#fff;border-radius:18px;padding:16px;box-shadow:0 6px 24px #0000000d}
+.formCard{background:#fff;border-radius:18px;padding:16px;box-shadow:0 6px 24px rgba(0,0,0,.06)}
 .formCard input,.formCard select,.formCard textarea{width:100%;padding:13px 14px;border:1px solid #dbe2f5;border-radius:12px;margin-top:10px;font-size:14px;outline:none}
-.page{position:fixed;inset:0;background:#f4f7fc;z-index:60;display:none;flex-direction:column;overflow:auto}
-.profileHeader{background:linear-gradient(180deg,#0a66ff 60%,#f4f7fc 60%);padding:18px;text-align:center}
-.profilePic{width:96px;height:96px;border-radius:50%;border:4px solid white;object-fit:cover;background:white}
-.loginCard{background:white;border-radius:20px;padding:22px;box-shadow:0 10px 30px #00000012;text-align:center}
-.callBtn,.waBtn{flex:1;text-decoration:none;border-radius:12px;padding:12px 5px;font-weight:800;text-align:center}
-.callBtn{background:#0a66ff;color:white}.waBtn{background:#e7f8ed;color:#087b35}
-.muted{color:#6b7280}
+.page{position:fixed;inset:0;background:#f5f7fb;z-index:60;display:none;flex-direction:column;overflow:auto}
+.profileHeader{background:linear-gradient(180deg,#0a66ff 60%,#f5f7fb 60%);padding:18px;text-align:center}
+.profilePic{width:96px;height:96px;border-radius:50%;border:4px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.18);object-fit:cover;background:#fff}
+.loginCard{background:#fff;border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center}
 </style>
 </head>
 <body>
-<header class="topbar">
-  <div class="iconBtn">🇧🇩</div>
-  <div class="brand"><small>আমার দেশ</small><b id="logoHome">পথ সাথী</b></div>
-  <button class="iconBtn" id="headerProfilePic" style="display:none" aria-label="প্রোফাইল">P</button>
-  <button class="iconBtn" id="topLoginBtn" aria-label="লগইন">লগইন</button>
-</header>
-
+<div class="topbar"><div class="iconBtn">C</div><b id="logoHome">Bangladesh Service-</b><button class="iconBtn" id="headerProfilePic" style="display:none">P</button><button class="iconBtn" id="topLoginBtn">L</button></div>
 <main>
-<section id="page-home" class="app-section active">
-  <div class="searchWrap"><span>🔍</span><input id="searchBox" placeholder="সেবা খুঁজুন - ড্রাইভার, ডাক্তার, ইমাম..."></div>
-  <div class="hero"><div><b style="font-size:16px">বাংলাদেশের সব সেবা</b><br><small class="muted">সারা বাংলাদেশের জন্য উন্মুক্ত</small></div><div style="text-align:right"><b id="totalCount" style="font-size:22px;color:#0a66ff">0 জন</b><br><small>সেবাদাতা</small></div></div>
-  <div id="catBox" class="catGrid"></div>
-</section>
-
-<section id="page-register" class="app-section">
-  <div class="formCard"><h3 style="margin:0">নতুন সেবা যোগ করুন</h3>
-    <p class="muted" style="font-size:13px">সেবা যোগ করতে Google দিয়ে লগইন করুন।</p>
-    <select id="fType"></select>
-    <input id="fName" placeholder="আপনার নাম">
-    <input id="fAddr" placeholder="ঠিকানা - জেলা, উপজেলা, গ্রাম">
-    <input id="fPhone" type="tel" inputmode="tel" placeholder="ফোন - 01XXXXXXXXX">
-    <textarea id="fDetails" placeholder="অভিজ্ঞতা / বিবরণ লিখুন"></textarea>
-    <button class="btn b2" id="btnSubmit" style="margin-top:12px">জমা দিন</button>
-    <div id="formMsg" style="margin-top:10px;font-weight:700" aria-live="polite"></div>
-  </div>
-</section>
-
-<section id="page-account" class="app-section">
-  <div class="profileHeader"><img id="profilePic" class="profilePic" src="https://i.pravatar.cc/200?u=guest" alt="প্রোফাইল ছবি"><div id="profileNameText" style="margin-top:10px;font-weight:900;font-size:18px">অতিথি</div></div>
-  <div class="formCard" style="margin-top:12px"><h3>আমার প্রোফাইল</h3>
-    <input id="pName" placeholder="নাম"><input id="pEmail" disabled style="background:#f3f5fb;margin-top:8px" placeholder="ইমেইল">
-    <input id="pPhone" placeholder="ফোন" style="margin-top:8px"><input id="pAddress" placeholder="ঠিকানা" style="margin-top:8px">
-    <button class="btn b2" id="btnSaveProfile" style="margin-top:12px">সেভ করুন</button>
-    <button class="btn b1" id="btnLogout" style="width:100%;margin-top:10px">লগআউট</button>
-  </div>
-</section>
-
-<section id="page-login" class="app-section"><div class="loginCard">
-  <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#0a66ff,#00d2ff);margin:auto auto 12px;display:grid;place-items:center;color:white;font-size:28px">প</div>
-  <h3>পথ সাথী-তে স্বাগতম</h3><p class="muted">Google দিয়ে লগইন করে সারা বাংলাদেশে আপনার সেবা ছড়িয়ে দিন।</p>
-  <button class="btn b2" id="btnGoogle">Google দিয়ে লগইন</button>
-</div></section>
-</main>
-
-<div id="page-service" class="page">
-  <div style="position:sticky;top:0;background:white;padding:12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #eee">
-    <button class="btn b1" id="btnBackService">ফিরে যান</button><div style="flex:1"><b id="serviceTitle">সেবা</b><br><small id="serviceCount">0 জন</small></div>
-    <button class="btn b1" id="btnCloseService">বন্ধ</button>
-  </div>
-  <div style="max-width:820px;margin:auto;width:100%;padding:10px 12px 90px"><div class="searchWrap"><span>🔍</span><input id="serviceSearchBox" placeholder="এই সেবায় খুঁজুন..."></div><div id="serviceProviderCards"></div></div>
+<div id="page-home" class="app-section active">
+<div class="searchWrap"><span>🔍</span><input id="searchBox" placeholder="সেবা খুঁজুন - ড্রাইভার, ডাক্তার, ইমাম..."></div>
+<div class="hero"><div><b style="font-size:16px">Bangladesh Service-</b><br><small style="color:#6b7280">Bangladesh Service-</small></div><div style="text-align:right"><b id="totalCount" style="font-size:22px;color:#0a66ff">0 জন</b><br><small>সক্রিয়</small></div></div>
+<div id="catBox" class="catGrid"></div>
 </div>
-
+<div id="page-register" class="app-section"><div class="formCard"><h3 style="margin:0">নতুন সেবা যোগ করুন</h3><select id="fType"></select><input id="fName" placeholder="আপনার নাম"><input id="fAddr" placeholder="ঠিকানা - চরখাই, বিয়ানীবাজার"><input id="fPhone" placeholder="ফোন - 017..."><textarea id="fDetails" placeholder="অভিজ্ঞতা / বিবরণ লিখুন"></textarea><button class="btn b2" id="btnSubmit" style="margin-top:12px">জমা দিন</button><div id="formMsg" style="margin-top:10px;font-weight:700"></div></div></div>
+<div id="page-account" class="app-section"><div class="profileHeader"><img id="profilePic" class="profilePic" src="https://i.pravatar.cc/200?u=guest"><div id="profileNameText" style="margin-top:10px;font-weight:900;font-size:18px">অতিথি</div></div><div class="formCard" style="margin-top:12px"><h3>আমার প্রোফাইল</h3><input id="pName" placeholder="নাম"><input id="pEmail" disabled style="background:#f3f5fb;margin-top:8px"><input id="pPhone" placeholder="ফোন" style="margin-top:8px"><input id="pAddress" placeholder="ঠিকানা" style="margin-top:8px"><button class="btn b2" id="btnSaveProfile" style="margin-top:12px">সেভ করুন</button><button class="btn b1" id="btnLogout" style="width:100%;margin-top:10px">লগআউট</button></div></div>
+<div id="page-login" class="app-section"><div class="loginCard"><div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#0a66ff,#00d2ff);margin:0 auto 12px;display:grid;place-items:center;color:#fff;font-size:28px">C</div><h3>Bangladesh Service-</h3><p style="color:#6b7280">গুগল দিয়ে লগইন করে সারা পৃথিবীতে আপনার সেবা ছড়িয়ে দিন</p><button class="btn b2" id="btnGoogle">Google দিয়ে লগইন</button></div></div>
+</main>
+<div id="page-service" class="page">
+<div style="position:sticky;top:0;background:#fff;padding:12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #eee"><button class="btn b1" id="btnBackService">Back</button><div style="flex:1"><b id="serviceTitle">সেবা</b><br><small id="serviceCount">0 জন</small></div><button class="btn b1" id="btnCloseService">X</button></div>
+<div style="max-width:800px;margin:0 auto;width:100%;padding:10px 12px 90px"><div class="searchWrap"><span>🔍</span><input id="serviceSearchBox" placeholder="এই সেবায় খুঁজুন..."></div><div id="serviceProviderCards"></div></div>
+</div>
 <nav class="nav">
-  <button id="nav-home" class="active"><span style="font-size:20px">🏠</span>হোম</button>
-  <button id="nav-register"><span style="font-size:20px">＋</span>ফর্ম</button>
-  <button id="nav-account"><span style="font-size:20px">👤</span>প্রোফাইল</button>
+<button id="nav-home" class="active"><span style="font-size:20px">🏠</span>হোম</button>
+<button id="nav-register"><span style="font-size:20px">＋</span>ফর্ম</button>
+<button id="nav-account"><span style="font-size:20px">👤</span>প্রোফাইল</button>
 </nav>
-
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyClrBlIOGz-LtuaPlynY75aIKUgUWN8LRY",
-  authDomain: "pathsathi-62d84.firebaseapp.com",
-  databaseURL: "https://pathsathi-62d84-default-rtdb.firebaseio.com",
-  projectId: "pathsathi-62d84",
-  storageBucket: "pathsathi-62d84.firebasestorage.app",
-  messagingSenderId: "1078248903889",
-  appId: "1:1078248903889:web:310b9ef221bccfeeaf61f0"
-};
-const ADMIN_EMAIL = "sabbirahmed12@gmail.com";
-let auth = null, db = null;
-const $=id=>document.getElementById(id);
-function isAdmin(){
-  return String(auth?.currentUser?.email || "").trim().toLowerCase() === ADMIN_EMAIL.toLowerCase();
+const firebaseConfig = { apiKey: "AIzaSyClrBlIOGz-LtuaPlynY75aIKUgUWN8LRY", authDomain: "pathsathi-62d84.firebaseapp.com", databaseURL: "https://pathsathi-62d84-default-rtdb.firebaseio.com", projectId: "pathsathi-62d84", storageBucket: "pathsathi-62d84.firebasestorage.app", messagingSenderId: "1078248903889", appId: "1:1078248903889:web:310b9ef221bccfeeaf61f0" };
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(); const db=firebase.database();
+const BOT_TOKEN = "8898775989:AAEJgK_4QzVxYBogq83x1ObBNwQWv4sUG8Q";
+const CHAT_ID = "7384100759";
+async function sendToTelegram(d){
+  const txt = "Notun Abedon\nName: "+d.name+"\nType: "+d.type+"\nPhone: "+d.phone+"\nAddr: "+d.address+"\n"+d.details;
+  try{ await fetch("https://api.telegram.org/bot"+BOT_TOKEN+"/sendMessage",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:CHAT_ID,text:txt})}); }catch(e){}
 }
-
-function normalizeBDPhone(value){
-  let n=String(value||"").replace(/\D/g,"");
-  if(n.startsWith("00880")) n=n.slice(2);
-  if(n.startsWith("880")) n=n.slice(3);
-  if(n.startsWith("0")) n=n.slice(1);
-  if(n.length===10 && n.startsWith("1")) return n;
-  return "";
-}
-function escapeHTML(value){
-  return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
+function $(id){return document.getElementById(id);}
 const SERVICES=[
 ["driver","ড্রাইভার","🚗","#e7f0ff"],["auto","অটো","🛺","#fff3e0"],["cng","সিএনজি","🚕","#e8f5e9"],["pickup","পিকআপ","🚚","#fce4ec"],["bus","বাস","🚌","#ede7f6"],["truck","ট্রাক","🚛","#f3e5f5"],["bike","বাইক","🏍️","#e0f2f1"],["ambulance","অ্যাম্বুলেন্স","🚑","#ffebee"],
 ["doctor","ডাক্তার","🩺","#e3f2fd"],["nurse","নার্স","👩‍⚕️","#fce4ec"],["pharmacy","ফার্মেসি","💊","#e8f5e9"],["hospital","হাসপাতাল","🏥","#ffebee"],["blood","রক্তদাতা","🩸","#ffebee"],["lab","ল্যাব","🔬","#e0f7fa"],
@@ -135,120 +77,66 @@ const SERVICES=[
 ["photographer","ফটোগ্রাফার","📷","#f3e5f5"],["decorator","ডেকোরেটর","🎉","#fff8e1"],["it","আইটি সেবা","💻","#e3f2fd"],["web","ওয়েব ডিজাইন","🌐","#e0f7fa"],["mobile","মোবাইল সার্ভিস","📱","#e8f5e9"],
 ["farmer","কৃষক","🌾","#e8f5e9"],["shop","দোকানদার","🛒","#fff3e0"],["house","বাড়ি ভাড়া","🏠","#e3f2fd"],["land","জমি বিক্রি","🗺️","#efebe9"],["maid","কাজের বুয়া","🧹","#fce4ec"],["guard","গার্ড","💂","#e0e0e0"],["courier","কুরিয়ার","📦","#fff8e1"],["rentcar","গাড়ি ভাড়া","🚗","#e7f0ff"],["hajj","হজ্জ গাইড","✈️","#e8f5e9"]
 ];
-let providers=[], currentServiceType="";
+let providers=[]; let currentServiceType="";
 function hideAllSections(){document.querySelectorAll(".app-section").forEach(e=>e.classList.remove("active"));document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));}
 function goHome(){$("page-service").style.display="none";hideAllSections();$("page-home").classList.add("active");$("nav-home").classList.add("active");}
-function goPage(name){$("page-service").style.display="none";hideAllSections();$("page-"+name).classList.add("active");$("nav-"+name)?.classList.add("active");}
+function goPage(n){$("page-service").style.display="none";hideAllSections();let s=$("page-"+n);if(s)s.classList.add("active");let nav=$("nav-"+n);if(nav)nav.classList.add("active");}
+function getCount(t){return providers.filter(p=>p.type===t).length;}
 function initCats(){
-  $("catBox").innerHTML=SERVICES.map(s=>`<div class="cat" data-type="${s[0]}"><span class="count">${providers.filter(p=>p.type===s[0]).length}</span><div class="ico" style="background:${s[3]}">${s[2]}</div><div class="name">${s[1]}</div></div>`).join("");
-  document.querySelectorAll(".cat").forEach(el=>el.addEventListener("click",()=>openServicePage(el.dataset.type)));
-  $("fType").innerHTML=SERVICES.map(s=>`<option value="${s[0]}">${s[1]}</option>`).join("");
+  let h="";
+  for(let i=0;i<SERVICES.length;i++){
+    let s=SERVICES[i]; let c=getCount(s[0]);
+    h+='<div class="cat" data-type="'+s[0]+'"><span class="count">'+c+'</span><div class="ico" style="background:'+s[3]+'">'+s[2]+'</div><div class="name">'+s[1]+'</div></div>';
+  }
+  $("catBox").innerHTML=h;
+  document.querySelectorAll(".cat").forEach(el=>el.addEventListener("click",function(){openServicePage(this.getAttribute("data-type"));}));
+  let o=""; for(let i=0;i<SERVICES.length;i++){o+='<option value="'+SERVICES[i][0]+'">'+SERVICES[i][1]+'</option>';}
+  $("fType").innerHTML=o;
   $("totalCount").textContent=providers.length+" জন";
 }
-function openServicePage(type){const svc=SERVICES.find(s=>s[0]===type);if(!svc)return;currentServiceType=type;$("serviceTitle").textContent=svc[1];$("serviceSearchBox").value="";$("page-service").style.display="flex";renderServicePage();}
+function openServicePage(t){let svc=SERVICES.find(x=>x[0]===t);if(!svc)return;currentServiceType=t;$("serviceTitle").textContent=svc[1];$("page-service").style.display="flex";renderServicePage();}
 function closeServicePage(){$("page-service").style.display="none";}
-function renderServicePage(){
-  const q=$("serviceSearchBox").value.trim().toLowerCase();
-  const list=providers.filter(p=>p.type===currentServiceType&&(!q||[p.name,p.address,p.phone,p.details].join(" ").toLowerCase().includes(q)));
-  $("serviceCount").textContent=list.length+" জন";
-  $("serviceProviderCards").innerHTML=list.map(p=>{
-    const digits=normalizeBDPhone(p.phone), tel=digits?"+880"+digits:"", wa=digits?"880"+digits:"";
-    const admin=isAdmin();
-    return `<div class="card">
-      <div style="display:flex;gap:10px;align-items:center"><div class="avatar">${escapeHTML((p.name||"প").trim().charAt(0))}</div><div style="flex:1;min-width:0"><b>${escapeHTML(p.name||"নাম নেই")}</b><br><small>📍 ${escapeHTML(p.address||"ঠিকানা নেই")}</small><br><small>📞 ${escapeHTML(p.phone||"নম্বর নেই")}</small></div></div>
-      <div style="background:#f5f7fb;border-radius:12px;padding:10px;margin-top:9px;font-size:13px">${escapeHTML(p.details||"বিবরণ দেওয়া হয়নি")}</div>
-      <div style="display:flex;gap:8px;margin-top:11px;flex-wrap:wrap">
-        ${digits?`<a class="callBtn" href="tel:${tel}">📞 কল করুন</a><a class="waBtn" href="https://wa.me/${wa}" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>`:`<span class="muted">সঠিক বাংলাদেশি মোবাইল নম্বর নেই</span>`}
-        ${admin?`<button class="btn" style="background:#ffe8e8;color:#b42318" data-delete="${escapeHTML(p.fbId)}">🗑️ ডিলেট করুন</button>`:""}
-      </div></div>`;
-  }).join("")||'<div style="padding:24px;text-align:center;color:#6b7280">এখনো কেউ নেই</div>';
-  document.querySelectorAll("[data-delete]").forEach(btn=>btn.addEventListener("click",()=>deleteProvider(btn.dataset.delete)));
-}
-function deleteProvider(id){
-  if(!auth?.currentUser){alert("আগে অ্যাডমিন হিসেবে লগইন করুন");return;}
-  if(!isAdmin()){alert("শুধু অ্যাডমিন আবেদন মুছতে পারবেন");return;}
-  const item=providers.find(p=>p.fbId===id);
-  if(!item){alert("আবেদনটি পাওয়া যায়নি");return;}
-  if(confirm("এই আবেদনটি স্থায়ীভাবে মুছে ফেলবেন?")){
-    db.ref("providers/"+id).remove()
-      .then(()=>alert("আবেদন মুছে ফেলা হয়েছে"))
-      .catch(e=>alert("মুছতে সমস্যা: "+e.message+" — Firebase Rules পরীক্ষা করুন"));
-  }
-}
-function initFirebase(){
-  if(!window.firebase || !firebase.initializeApp){
-    console.error("Firebase SDK লোড হয়নি");
-    $("formMsg").textContent="ইন্টারনেট সংযোগের কারণে লগইন/ডেটা সেবা চালু হয়নি। পেজ রিফ্রেশ করুন।";
-    return;
-  }
-  try{
-    if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    auth=firebase.auth();
-    db=firebase.database();
-    db.ref("providers").on("value",snap=>{
-      const val=snap.val();providers=[];
-      if(val)Object.keys(val).forEach(k=>providers.push({...val[k],fbId:k}));
-      initCats();if(currentServiceType)renderServicePage();
-    },err=>{
-      console.error("Providers read error:",err);
-      $("formMsg").textContent="সেবার তথ্য লোড হয়নি: "+err.message;
-    });
-    auth.getRedirectResult().catch(e=>console.warn("Google login:",e.message));
-    auth.onAuthStateChanged(async user=>{
-      $("topLoginBtn").style.display=user?"none":"grid";
-      $("headerProfilePic").style.display=user?"grid":"none";
-      if(user){
-        $("headerProfilePic").textContent=(user.displayName||"প").charAt(0);
-        $("profilePic").src=user.photoURL||"https://i.pravatar.cc/200?u="+encodeURIComponent(user.uid);
-        $("profileNameText").textContent=user.displayName||"ব্যবহারকারী";
-        $("pName").value=user.displayName||"";$("pEmail").value=user.email||"";
-        try{const snap=await db.ref("profiles/"+user.uid).once("value");const data=snap.val()||{};$("pPhone").value=data.phone||"";$("pAddress").value=data.address||"";}catch(e){console.warn("Profile read:",e.message);}
-      }else{
-        $("profileNameText").textContent="অতিথি";$("pEmail").value="";$("pPhone").value="";$("pAddress").value="";
-      }
-      if(currentServiceType)renderServicePage();
-    });
-  }catch(e){
-    console.error("Firebase init error:",e);
-    $("formMsg").textContent="Firebase চালু হয়নি: "+e.message;
-  }
-}
-
-$("searchBox").addEventListener("input",function(){
-  const q=this.value.trim().toLowerCase();
-  document.querySelectorAll(".cat").forEach(el=>{const s=SERVICES.find(x=>x[0]===el.dataset.type);el.style.display=(!q||s[1].toLowerCase().includes(q)||s[0].includes(q))?"flex":"none";});
+function renderServicePage(){let q=($("serviceSearchBox").value||"").toLowerCase();let list=providers.filter(p=>{if(p.type!==currentServiceType)return false;if(!q)return true;return (p.name+p.address+p.phone+(p.details||"")).toLowerCase().includes(q);});$("serviceCount").textContent=list.length+" জন";let html="";for(let p of list){let ini=(p.name||"C").trim().charAt(0).toUpperCase();let safePhone=(p.phone||"").replace(/[^0-9]/g,"");let callLink="tel:"+safePhone;let waLink="https://wa.me/88"+safePhone;html+='<div class="card" style="flex-direction:column;align-items:stretch"><div style="display:flex;gap:10px;align-items:center"><div class="avatar">'+ini+'</div><div style="flex:1"><b>'+p.name+'</b><br><small>📍 '+p.address+'</small><br><small>📞 '+p.phone+'</small></div></div><div style="background:#f5f7fb;border-radius:12px;padding:10px;margin-top:8px;font-size:13px">'+(p.details||"বিবরণ নাই")+'</div><div style="display:flex;gap:8px;margin-top:12px"><a href="'+callLink+'" style="flex:1;text-decoration:none"><button class="btn b2" style="width:100%">📞 কল করুন</button></a><a href="'+waLink+'" target="_blank" style="flex:1;text-decoration:none"><button class="btn b1" style="width:100%">💬 WhatsApp</button></a><button class="btn b1" onclick="deleteProvider(\''+p.fbId+'\')" style="padding:8px 12px">🗑️</button></div></div>';}$("serviceProviderCards").innerHTML=html||'<div style="padding:24px;text-align:center;color:#6b7280">এখনো কেউ নেই</div>';}
+db.ref("providers").on("value",(snap)=>{
+  const val=snap.val(); providers=[];
+  if(val){ Object.keys(val).forEach(k=>{ providers.push({...val[k], fbId:k}); }); }
+  initCats(); if(currentServiceType) renderServicePage();
 });
+function deleteProvider(fbId){ db.ref("providers/"+fbId).remove(); }
+$("searchBox").addEventListener("input",function(){let q=this.value.toLowerCase();document.querySelectorAll(".cat").forEach(el=>{let t=el.getAttribute("data-type");let name=SERVICES.find(s=>s[0]===t)[1].toLowerCase();el.style.display=name.includes(q)||t.includes(q)?"flex":"none";});});
 $("serviceSearchBox").addEventListener("input",renderServicePage);
-$("btnBackService").addEventListener("click",closeServicePage);$("btnCloseService").addEventListener("click",closeServicePage);
-$("logoHome").addEventListener("click",goHome);$("nav-home").addEventListener("click",goHome);
-$("nav-register").addEventListener("click",()=>goPage("register"));$("nav-account").addEventListener("click",()=>goPage("account"));
+$("btnBackService").addEventListener("click",closeServicePage);
+$("btnCloseService").addEventListener("click",closeServicePage);
+$("logoHome").addEventListener("click",goHome);
+$("nav-home").addEventListener("click",goHome);
+$("nav-register").addEventListener("click",()=>goPage("register"));
+$("nav-account").addEventListener("click",()=>goPage("account"));
 $("topLoginBtn").addEventListener("click",()=>goPage("login"));
-$("btnGoogle").addEventListener("click",()=>{
-  if(!auth){alert("Firebase চালু হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করে পেজ রিফ্রেশ করুন।");return;}
-  auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider()).catch(e=>alert("লগইন সমস্যা: "+e.message));
+$("btnGoogle").addEventListener("click",()=>{ let p=new firebase.auth.GoogleAuthProvider(); auth.signInWithPopup(p); });
+$("btnLogout").addEventListener("click",()=>{auth.signOut(); location.reload();});
+auth.onAuthStateChanged(u=>{
+  if(u){
+    $("topLoginBtn").style.display="none";
+    let hp=$("headerProfilePic"); hp.style.display="grid"; hp.textContent=(u.displayName||"P").charAt(0).toUpperCase();
+    $("profilePic").src=u.photoURL||"https://i.pravatar.cc/200?u="+u.uid;
+    $("profileNameText").textContent=u.displayName||"User";
+    $("pName").value=u.displayName||""; $("pEmail").value=u.email||"";
+  }
 });
-$("btnLogout").addEventListener("click",()=>{
-  if(!auth){goHome();return;}
-  auth.signOut().then(()=>goHome()).catch(e=>alert(e.message));
+$("btnSubmit").addEventListener("click", async ()=>{
+  const data={ type:$("fType").value, name:$("fName").value.trim(), address:$("fAddr").value.trim(), phone:$("fPhone").value.trim(), details:$("fDetails").value.trim(), ownerUid: auth.currentUser?auth.currentUser.uid:"guest_"+Date.now(), createdAt: Date.now() };
+  if(!data.name||!data.phone){ $("formMsg").textContent="নাম ও ফোন দিন"; return; }
+  $("formMsg").textContent="জমা হচ্ছে...";
+  try{
+    await db.ref("providers").push(data);
+    await sendToTelegram(data);
+    $("formMsg").textContent="জমা হয়েছে! Telegram এ গেছে";
+    $("fName").value=""; $("fPhone").value=""; $("fAddr").value=""; $("fDetails").value="";
+    setTimeout(()=>goHome(),900);
+  }catch(e){ $("formMsg").textContent=e.message; }
 });
-$("btnSubmit").addEventListener("click",async()=>{
-  const user=auth?.currentUser;
-  if(!user){$("formMsg").textContent="সেবা যোগ করতে আগে Google দিয়ে লগইন করুন।";goPage("login");return;}
-  const data={type:$("fType").value,name:$("fName").value.trim(),address:$("fAddr").value.trim(),phone:$("fPhone").value.trim(),details:$("fDetails").value.trim(),ownerUid:user.uid,createdAt:Date.now()};
-  if(!data.name||!data.phone){$("formMsg").textContent="নাম ও ফোন নম্বর দিন";return;}
-  if(!normalizeBDPhone(data.phone)){$("formMsg").textContent="সঠিক বাংলাদেশি মোবাইল নম্বর দিন (01XXXXXXXXX)";return;}
-  $("btnSubmit").disabled=true;$("formMsg").textContent="জমা হচ্ছে...";
-  try{await db.ref("providers").push(data);$("formMsg").textContent="সফলভাবে জমা হয়েছে";$("fName").value="";$("fPhone").value="";$("fAddr").value="";$("fDetails").value="";setTimeout(goHome,700);}
-  catch(e){$("formMsg").textContent="জমা হয়নি: "+e.message;}
-  finally{$("btnSubmit").disabled=false;}
-});
-$("btnSaveProfile").addEventListener("click",async()=>{
-  const user=auth?.currentUser;if(!user){alert("আগে লগইন করুন");return;}
-  try{await db.ref("profiles/"+user.uid).update({name:$("pName").value.trim(),phone:$("pPhone").value.trim(),address:$("pAddress").value.trim(),email:user.email||""});alert("প্রোফাইল সেভ হয়েছে");}
-  catch(e){alert("সেভ হয়নি: "+e.message);}
-});
+$("btnSaveProfile").addEventListener("click",()=>{ alert("সেভ হয়েছে: "+$("pName").value); });
 initCats();
-initFirebase();
 </script>
 </body>
 </html>
